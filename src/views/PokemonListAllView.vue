@@ -1,0 +1,34 @@
+<template>
+  <v-container class="text-center">
+    <v-row no-gutters>
+      <v-col cols="12" md="8" class="mx-auto">
+        <PokemonListAll />
+      </v-col>
+    </v-row>
+  </v-container>
+  <v-container class="text-center">
+    <PokemonListFooter />
+  </v-container>
+</template>
+
+<script>
+import PokemonListAll from "../components/PokemonListAll.vue";
+import PokemonListFooter from "../components/footer/PokemonListFooter.vue";
+
+export default {
+  name: "PokemonListAllView",
+  components: {
+    PokemonListAll,
+    PokemonListFooter,
+  },
+};
+</script>
+
+<style scoped>
+.v-container {
+  height: 100%;
+}
+.v-col {
+  padding: 4px;
+}
+</style>
