@@ -79,9 +79,13 @@ watch(selectedPokemon, async (newValue) => {
         const data = await response.json();
 
         const PokemonDetails = {
-          name: data.name,
+          image: data.sprites.other.dream_world.front_default,
+          name: data.name.replace(/\b\w/g, (firstLetter) =>
+            firstLetter.toUpperCase()
+          ),
           height: data.height,
           weight: data.weight,
+          types: data.types.length > 0 ? data.types[0].type.name : "",
         };
         store.commit("setPokemonDetails", PokemonDetails);
       }
@@ -103,6 +107,11 @@ function onSearchResultsUpdate(results, search) {
 </script>
 
 <style scoped>
+@import url("https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap");
+.v-card {
+  font-family: "Lato", sans-serif;
+  font-weight: 500;
+}
 .v-btn {
   font-family: Lato;
 }
