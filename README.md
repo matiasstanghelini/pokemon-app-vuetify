@@ -30,13 +30,13 @@ El proyecto está estructurado de manera modular y siguiendo las mejores prácti
 - **All Pokemons List View**: Lista todos los Pokémon disponibles y permite interactuar con ellos.
 - **Favorite Pokémon List View**: Muestra los Pokémon marcados como favoritos.
 
-### Componentes
+### Certain Components
 
 - **PokemonCardList.vue**: Componente para mostrar cada Pokémon con opciones para marcar como favorito y ver detalles.
 - **PokemonDetailsModal.vue**: Modal que muestra los detalles de un Pokémon seleccionado.
 - **PokemonListAll.vue**: Componente que utiliza Composition API para la lista de todos los Pokémon, aprovechando las capacidades reactivas de Vue 3.
 
-### Librerías y Frameworks
+### Frameworks & Libs
 
 - **Vuetify**: Utilizado para la interfaz de usuario, proporcionando componentes responsive y estilizados que cumplen con las guías de diseño material.
 - **Vue Router**: Para el enrutamiento entre las diferentes vistas de la aplicación.
@@ -78,7 +78,7 @@ Para levantar el proyecto de la aplicación Pokémon, aquí están los pasos bá
 
 3. **Acceder a la Aplicación**
    - Una vez que la compilación haya terminado y el servidor esté corriendo, abre tu navegador web.
-   - Navega a `http://localhost:8080` (o al puerto que se especifique en tu configuración de desarrollo) para ver la aplicación Pokémon.
+   - Navega a `http://localhost:3000` (o al puerto que se especifique en tu configuración de desarrollo) para ver la aplicación Pokémon.
 
 ### Detalles Adicionales
 
