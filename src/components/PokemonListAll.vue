@@ -24,7 +24,7 @@
 </template>
 
 <script setup>
-import { ref, computed, onMounted } from "vue";
+import { ref, computed, onMounted, watch } from "vue";
 import PokemonCardList from "@/components/cards/PokemonCardList.vue";
 import PokemonSearchBar from "@/components/search-bar/PokemonSearchBar.vue";
 import GoBackHomeView from "@/views/GoBackHomeView.vue";
@@ -54,6 +54,8 @@ const isNoPokemonsFound = computed(
   () => filteredPokemons.value.length === 0 && !searchPerformed.value
 );
 
+const selectedPokemon = computed(() => store.getters.getSelectedPokemon);
+
 onMounted(() => {
   fetchPokemons();
 });
@@ -66,6 +68,28 @@ function fetchPokemons() {
       pokemonNames.value = pokemons.value.map((pokemon) => pokemon.name);
     });
 }
+
+watch(selectedPokemon, async (newValue) => {
+  if (newValue) {
+    try {
+      const response = await fetch(
+        `https://pokeapi.co/api/v2/pokemon/${newValue}`
+      );
+      if (response.ok) {
+        const data = await response.json();
+
+        const PokemonDetails = {
+          name: data.name,
+          height: data.height,
+          weight: data.weight,
+        };
+        store.commit("setPokemonDetails", PokemonDetails);
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  }
+});
 
 function addToFavorites(name) {
   store.commit("addFavorite", name);
