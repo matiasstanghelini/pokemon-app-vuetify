@@ -1,14 +1,14 @@
 <template>
-  <PokemonLoader v-if="showLoader" />
-  <v-container v-else class="text-center">
-    <v-row no-gutters>
-      <v-col cols="12" md="8" class="mx-auto">
-        <PokemonListAll />
-      </v-col>
-    </v-row>
-  </v-container>
   <v-container class="text-center">
-    <PokemonListFooter />
+    <PokemonLoader v-if="showLoader" />
+    <template v-else>
+      <v-row no-gutters>
+        <v-col cols="12" md="8" class="mx-auto">
+          <PokemonListAll />
+        </v-col>
+      </v-row>
+      <PokemonListFooter />
+    </template>
   </v-container>
 </template>
 
@@ -32,14 +32,14 @@ export default {
   mounted() {
     setTimeout(() => {
       this.showLoader = false;
-    }, 2000);
+    }, 1500);
   },
 };
 </script>
 
 <style scoped>
 .v-container {
-  height: 100%;
+  height: 100vh;
 }
 .v-col {
   padding: 4px;
