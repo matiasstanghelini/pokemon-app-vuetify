@@ -16,19 +16,22 @@
         </p>
       </v-col>
       <v-col cols="12" class="text-center">
-        <GetStartedButton />
+        <GenericShortButton
+          @click="$router.push('/pokemons-list')"
+          text="Get Started"
+        />
       </v-col>
     </v-row>
   </v-container>
 </template>
 
 <script>
-import GetStartedButton from "../components/buttons/GetStartedButton.vue";
+import GenericShortButton from "../components/buttons/GenericShortButton.vue";
 
 export default {
-  name: "GetStartedButtonView",
+  name: "GenericShortButtonView",
   components: {
-    GetStartedButton,
+    GenericShortButton,
   },
 };
 </script>
