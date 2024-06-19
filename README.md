@@ -46,41 +46,54 @@ El proyecto está estructurado de manera modular y siguiendo las mejores prácti
 - **Composition API**: Es el enfoque recomendado para la reactividad en Vue 3, permitiendo una mejor organización y reutilización del código.
 - **PokemonListAll.vue**: Este componente utiliza Composition API para manejar la lógica de la lista de Pokémon. Por ejemplo, gestionar el estado local de la lista de Pokémon, realizar llamadas a la API para obtener datos, y manejar las interacciones del usuario de manera eficiente y clara.
 
-## Levantar el Proyecto
+# Levantar el Proyecto de la Aplicación Pokémon
 
-Para levantar el proyecto de la aplicación Pokémon, aquí están los pasos básicos que debes seguir. Estos asumen que ya tienes Node.js y npm (o yarn) instalados en tu sistema. Vamos a incluir los comandos necesarios:
+Para comenzar a trabajar con la aplicación Pokémon en tu entorno local, sigue estos pasos:
 
-### Pasos para Levantar el Proyecto
+## Clonar el Repositorio
 
-1. **Instalación de Dependencias**
+1. **Clona el Repositorio**
 
-   - Abre una terminal en la raíz del proyecto.
-   - Ejecuta el siguiente comando para instalar todas las dependencias necesarias listadas en `package.json`:
+   - Abre una terminal en la ubicación donde deseas almacenar el proyecto.
+   - Ejecuta el siguiente comando para clonar el repositorio:
+     ```
+     git clone https://github.com/matiasstanghelini/pokemon-app-vuetify.git
+     ```
+
+## Instalación de Dependencias
+
+2. **Instalación de Dependencias**
+
+   - Navega a la raíz del proyecto clonado.
+   - Instala todas las dependencias necesarias listadas en `package.json` ejecutando el siguiente comando:
      ```
      npm install
      ```
-   - Si estás usando `yarn`, ejecuta:
+     Si prefieres usar `yarn`, ejecuta:
      ```
      yarn install
      ```
 
-2. **Compilar y Servir la Aplicación**
+## Compilar y Servir la Aplicación
+
+3. **Compilar y Servir la Aplicación**
 
    - Después de instalar las dependencias, puedes compilar y servir la aplicación usando el siguiente comando:
      ```
      npm run dev
      ```
-   - Si prefieres usar `yarn`, ejecuta:
+     O con `yarn`:
      ```
      yarn dev
      ```
 
-3. **Acceder a la Aplicación**
+## Acceder a la Aplicación
+
+4. **Acceder a la Aplicación**
+
    - Una vez que la compilación haya terminado y el servidor esté corriendo, abre tu navegador web.
    - Navega a `http://localhost:3000` (o al puerto que se especifique en tu configuración de desarrollo) para ver la aplicación Pokémon.
 
 ### Detalles Adicionales
 
-- **Vue CLI**: Si estás usando Vue CLI para este proyecto, `npm run dev` o `yarn dev` generalmente inicia un servidor de desarrollo con hot-reloading habilitado. Esto significa que los cambios que realices en el código se reflejarán automáticamente en el navegador sin necesidad de reiniciar manualmente el servidor.
-
-- **Personalización de Comandos**: Dependiendo de cómo esté configurado tu proyecto y el entorno de desarrollo, los comandos pueden variar ligeramente. Asegúrate de consultar el `package.json` para verificar los scripts personalizados que puedan estar definidos específicamente para este proyecto.
+- **Vue CLI**: Si estás utilizando Vue CLI para este proyecto, `npm run dev` o `yarn dev` generalmente inicia un servidor de desarrollo con hot-reloading habilitado. Esto permite que los cambios que realices en el código se reflejen automáticamente en el navegador sin necesidad de reiniciar manualmente el servidor.
