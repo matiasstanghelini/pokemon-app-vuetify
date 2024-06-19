@@ -1,79 +1,87 @@
-# Vuetify (Default)
+# Overview de la Aplicación Pokémon
 
-This is the official scaffolding tool for Vuetify, designed to give you a head start in building your new Vuetify application. It sets up a base template with all the necessary configurations and standard directory structure, enabling you to begin development without the hassle of setting up the project from scratch.
+La aplicación Pokémon permite a los usuarios explorar una lista de Pokémon, agregar Pokémon a favoritos y ver los detalles de cada uno. Está estructurada para ser intuitiva y fácil de navegar, utilizando Vuetify para asegurar que todos los componentes sean responsive y visualmente atractivos. A continuación, se detalla cómo funciona la aplicación y la estructura del proyecto.
 
-## ❗️ Important Links
+## Funcionalidades Principales
 
-- 📄 [Docs](https://vuetifyjs.com/)
-- 🚨 [Issues](https://issues.vuetifyjs.com/)
-- 🏬 [Store](https://store.vuetifyjs.com/)
-- 🎮 [Playground](https://play.vuetifyjs.com/)
-- 💬 [Discord](https://community.vuetifyjs.com)
+### Get Started View
 
-## 💿 Install
+- Esta vista inicial proporciona una introducción a la aplicación y una forma de comenzar.
 
-Set up your project using your preferred package manager. Use the corresponding command to install the dependencies:
+### All Pokemons List View
 
-| Package Manager                                                | Command        |
-|---------------------------------------------------------------|----------------|
-| [yarn](https://yarnpkg.com/getting-started)                   | `yarn install` |
-| [npm](https://docs.npmjs.com/cli/v7/commands/npm-install)     | `npm install`  |
-| [pnpm](https://pnpm.io/installation)                          | `pnpm install` |
-| [bun](https://bun.sh/#getting-started)                        | `bun install`  |
+- Lista todos los Pokémon disponibles.
+- Permite buscar Pokémon por nombre.
+- Cada Pokémon tiene la opción de ser añadido a la lista de favoritos.
+- Al hacer clic en un Pokémon, se muestra una modal con detalles como nombre, peso, altura y tipo.
 
-After completing the installation, your environment is ready for Vuetify development.
+### Favorite Pokémon List View
 
-## ✨ Features
+- Muestra solo los Pokémon que han sido marcados como favoritos por el usuario.
+- Permite eliminar Pokémon de la lista de favoritos.
 
-- 🖼️ **Optimized Front-End Stack**: Leverage the latest Vue 3 and Vuetify 3 for a modern, reactive UI development experience. [Vue 3](https://v3.vuejs.org/) | [Vuetify 3](https://vuetifyjs.com/en/)
-- 🗃️ **State Management**: Integrated with [Pinia](https://pinia.vuejs.org/), the intuitive, modular state management solution for Vue.
-- 🚦 **Routing and Layouts**: Utilizes Vue Router for SPA navigation and vite-plugin-vue-layouts for organizing Vue file layouts. [Vue Router](https://router.vuejs.org/) | [vite-plugin-vue-layouts](https://github.com/JohnCampionJr/vite-plugin-vue-layouts)
-- ⚡ **Next-Gen Tooling**: Powered by Vite, experience fast cold starts and instant HMR (Hot Module Replacement). [Vite](https://vitejs.dev/)
-- 🧩 **Automated Component Importing**: Streamline your workflow with unplugin-vue-components, automatically importing components as you use them. [unplugin-vue-components](https://github.com/antfu/unplugin-vue-components)
+## Estructura del Proyecto
 
-These features are curated to provide a seamless development experience from setup to deployment, ensuring that your Vuetify application is both powerful and maintainable.
+El proyecto está estructurado de manera modular y siguiendo las mejores prácticas de Vue.js y Vuex:
 
-## 💡 Usage
+### Views
 
-This section covers how to start the development server and build your project for production.
+- **Get Started View**: Introducción y punto de inicio de la aplicación.
+- **All Pokemons List View**: Lista todos los Pokémon disponibles y permite interactuar con ellos.
+- **Favorite Pokémon List View**: Muestra los Pokémon marcados como favoritos.
 
-### Starting the Development Server
+### Componentes
 
-To start the development server with hot-reload, run the following command. The server will be accessible at [http://localhost:3000](http://localhost:3000):
+- **PokemonCardList.vue**: Componente para mostrar cada Pokémon con opciones para marcar como favorito y ver detalles.
+- **PokemonDetailsModal.vue**: Modal que muestra los detalles de un Pokémon seleccionado.
+- **PokemonListAll.vue**: Componente que utiliza Composition API para la lista de todos los Pokémon, aprovechando las capacidades reactivas de Vue 3.
 
-```bash
-yarn dev
-```
+### Librerías y Frameworks
 
-(Repeat for npm, pnpm, and bun with respective commands.)
+- **Vuetify**: Utilizado para la interfaz de usuario, proporcionando componentes responsive y estilizados que cumplen con las guías de diseño material.
+- **Vue Router**: Para el enrutamiento entre las diferentes vistas de la aplicación.
+- **Vuex**: Para la gestión del estado global, especialmente para mantener la lista de Pokémon favoritos y los detalles del Pokémon seleccionado.
 
-> Add NODE_OPTIONS='--no-warnings' to suppress the JSON import warnings that happen as part of the Vuetify import mapping. If you are on Node [v21.3.0](https://nodejs.org/en/blog/release/v21.3.0) or higher, you can change this to NODE_OPTIONS='--disable-warning=5401'. If you don't mind the warning, you can remove this from your package.json dev script.
+### Uso de Composition API en `PokemonListAll.vue`
 
-### Building for Production
+- **Composition API**: Es el enfoque recomendado para la reactividad en Vue 3, permitiendo una mejor organización y reutilización del código.
+- **PokemonListAll.vue**: Este componente utiliza Composition API para manejar la lógica de la lista de Pokémon. Por ejemplo, gestionar el estado local de la lista de Pokémon, realizar llamadas a la API para obtener datos, y manejar las interacciones del usuario de manera eficiente y clara.
 
-To build your project for production, use:
+## Levantar el Proyecto
 
-```bash
-yarn build
-```
+Para levantar el proyecto de la aplicación Pokémon, aquí están los pasos básicos que debes seguir. Estos asumen que ya tienes Node.js y npm (o yarn) instalados en tu sistema. Vamos a incluir los comandos necesarios:
 
-(Repeat for npm, pnpm, and bun with respective commands.)
+### Pasos para Levantar el Proyecto
 
-Once the build process is completed, your application will be ready for deployment in a production environment.
+1. **Instalación de Dependencias**
 
-## 💪 Support Vuetify Development
+   - Abre una terminal en la raíz del proyecto.
+   - Ejecuta el siguiente comando para instalar todas las dependencias necesarias listadas en `package.json`:
+     ```
+     npm install
+     ```
+   - Si estás usando `yarn`, ejecuta:
+     ```
+     yarn install
+     ```
 
-This project is built with [Vuetify](https://vuetifyjs.com/en/), a UI Library with a comprehensive collection of Vue components. Vuetify is an MIT licensed Open Source project that has been made possible due to the generous contributions by our [sponsors and backers](https://vuetifyjs.com/introduction/sponsors-and-backers/). If you are interested in supporting this project, please consider:
+2. **Compilar y Servir la Aplicación**
 
-- [Requesting Enterprise Support](https://support.vuetifyjs.com/)
-- [Sponsoring John on Github](https://github.com/users/johnleider/sponsorship)
-- [Sponsoring Kael on Github](https://github.com/users/kaelwd/sponsorship)
-- [Supporting the team on Open Collective](https://opencollective.com/vuetify)
-- [Becoming a sponsor on Patreon](https://www.patreon.com/vuetify)
-- [Becoming a subscriber on Tidelift](https://tidelift.com/subscription/npm/vuetify)
-- [Making a one-time donation with Paypal](https://paypal.me/vuetify)
+   - Después de instalar las dependencias, puedes compilar y servir la aplicación usando el siguiente comando:
+     ```
+     npm run dev
+     ```
+   - Si prefieres usar `yarn`, ejecuta:
+     ```
+     yarn dev
+     ```
 
-## 📑 License
-[MIT](http://opensource.org/licenses/MIT)
+3. **Acceder a la Aplicación**
+   - Una vez que la compilación haya terminado y el servidor esté corriendo, abre tu navegador web.
+   - Navega a `http://localhost:8080` (o al puerto que se especifique en tu configuración de desarrollo) para ver la aplicación Pokémon.
 
-Copyright (c) 2016-present Vuetify, LLC
+### Detalles Adicionales
+
+- **Vue CLI**: Si estás usando Vue CLI para este proyecto, `npm run dev` o `yarn dev` generalmente inicia un servidor de desarrollo con hot-reloading habilitado. Esto significa que los cambios que realices en el código se reflejarán automáticamente en el navegador sin necesidad de reiniciar manualmente el servidor.
+
+- **Personalización de Comandos**: Dependiendo de cómo esté configurado tu proyecto y el entorno de desarrollo, los comandos pueden variar ligeramente. Asegúrate de consultar el `package.json` para verificar los scripts personalizados que puedan estar definidos específicamente para este proyecto.
