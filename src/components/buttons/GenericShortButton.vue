@@ -1,12 +1,18 @@
 <template>
-  <button @click="$router.push('/pokemons-list')">
-    <span class="text-white">Get Started</span>
+  <button @click="$emit('click')">
+    <span class="text-white">{{ text }}</span>
   </button>
 </template>
 
 <script>
 export default {
-  name: "GetStartedButton",
+  name: "GenericShortButton",
+  props: {
+    text: {
+      type: String,
+      required: true,
+    },
+  },
 };
 </script>
 
