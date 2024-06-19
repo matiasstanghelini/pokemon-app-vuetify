@@ -4,9 +4,22 @@
       <v-col cols="12" class="text-center">
         <PokemonSearchBar :items="favorites" />
       </v-col>
-      <v-col cols="12" v-for="(favorite, index) in favorites" :key="index"
-        ><PokemonCardList :name="favorite" />
-      </v-col>
+      <template v-if="favorites.length">
+        <v-col cols="12" v-for="favorite in favorites" :key="favorite">
+          <PokemonCardList :name="favorite" />
+        </v-col>
+      </template>
+      <template v-else>
+        <v-col cols="12" class="text-center">
+          <p class="text-center">
+            It looks like you don't have favorites yet. Start adding your
+            favorite Pokémon first!
+          </p>
+          <p class="text-center mt-3">
+            <v-icon icon="mdi-pokeball"></v-icon>
+          </p>
+        </v-col>
+      </template>
     </v-row>
   </v-container>
 </template>
