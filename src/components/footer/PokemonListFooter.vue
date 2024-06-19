@@ -1,11 +1,11 @@
 <template>
   <div class="footer d-flex justify-center">
-    <GenericButton
+    <GenericLargeButton
       icon="mdi mdi-format-list-bulleted-square"
       name="All"
       @click="$router.push('/pokemons-list')"
     />
-    <GenericButton
+    <GenericLargeButton
       icon="mdi-star"
       name="Favorites"
       @click="$router.push('/pokemons-favorites')"
@@ -14,21 +14,22 @@
 </template>
 
 <script>
-import GenericButton from "../buttons/GenericButton.vue";
+import GenericLargeButton from "../buttons/GenericLargeButton.vue";
 
 export default {
   name: "PokemonListFooter",
   components: {
-    GenericButton,
+    GenericLargeButton,
   },
 };
 </script>
 
 <style scoped>
 .footer {
-  background-color: white;
+  background-color: rgb(250, 250, 250);
   position: fixed;
   bottom: 0;
+  border-top: 1px solid #bcbaba;
   left: 0;
   width: 100%;
   z-index: 2;
