@@ -4,21 +4,16 @@
       <v-col>
         <PokemonSearchBar
           :items="pokemonNames"
-          @update:searchResults="updateSearchResults"
+          @update:searchResults="onSearchResultsUpdate"
         />
       </v-col>
-      <v-col cols="12" v-if="searchPerformed && filteredPokemons.length === 0">
+      <v-col cols="12" v-if="isSearchWithoutResults">
         <GoBackHomeView />
       </v-col>
-      <v-col cols="12" v-if="filteredPokemons.length === 0 && !searchPerformed">
+      <v-col cols="12" v-if="isNoPokemonsFound">
         <WelcomeView />
       </v-col>
-      <v-col
-        cols="12"
-        v-else
-        v-for="pokemon in filteredPokemons"
-        :key="pokemon.name"
-      >
+      <v-col cols="12" v-for="pokemon in filteredPokemons" :key="pokemon.name">
         <PokemonCardList
           :name="pokemon.name"
           @add-to-favorite="addToFavorites"
@@ -28,59 +23,58 @@
   </v-container>
 </template>
 
-<script>
+<script setup>
+import { ref, computed, onMounted } from "vue";
 import PokemonCardList from "@/components/cards/PokemonCardList.vue";
 import PokemonSearchBar from "@/components/search-bar/PokemonSearchBar.vue";
 import GoBackHomeView from "@/views/GoBackHomeView.vue";
 import WelcomeView from "@/views/WelcomeView.vue";
+import { useStore } from "vuex";
 
-export default {
-  name: "PokemonListAll",
-  components: {
-    PokemonCardList,
-    PokemonSearchBar,
-    GoBackHomeView,
-    WelcomeView,
-  },
-  data() {
-    return {
-      pokemons: [],
-      pokemonNames: [],
-      searchResults: [],
-      searchPerformed: false,
-    };
-  },
-  computed: {
-    filteredPokemons() {
-      if (!this.searchPerformed || this.searchResults.length > 0) {
-        return this.pokemons.filter((pokemon) =>
-          this.searchResults.includes(pokemon.name)
-        );
-      }
-      return [];
-    },
-  },
-  mounted() {
-    this.fetchPokemons();
-  },
-  methods: {
-    fetchPokemons() {
-      fetch("https://pokeapi.co/api/v2/pokemon") // Limitar a los primeros 151 Pokémon
-        .then((response) => response.json())
-        .then((data) => {
-          this.pokemons = data.results;
-          this.pokemonNames = this.pokemons.map((pokemon) => pokemon.name);
-        });
-    },
-    addToFavorites(name) {
-      this.$store.commit("addFavorite", name);
-    },
-    updateSearchResults(results, search) {
-      this.searchResults = results;
-      this.searchPerformed = search.length > 0;
-    },
-  },
-};
+const store = useStore();
+
+const pokemons = ref([]);
+const pokemonNames = ref([]);
+const searchResults = ref([]);
+const searchPerformed = ref(false);
+
+const filteredPokemons = computed(() => {
+  if (!searchPerformed.value || searchResults.value.length > 0) {
+    return pokemons.value.filter((pokemon) =>
+      searchResults.value.includes(pokemon.name)
+    );
+  }
+  return [];
+});
+
+const isSearchWithoutResults = computed(
+  () => searchPerformed.value && filteredPokemons.value.length === 0
+);
+const isNoPokemonsFound = computed(
+  () => filteredPokemons.value.length === 0 && !searchPerformed.value
+);
+
+onMounted(() => {
+  fetchPokemons();
+});
+
+function fetchPokemons() {
+  fetch("https://pokeapi.co/api/v2/pokemon")
+    .then((response) => response.json())
+    .then((data) => {
+      pokemons.value = data.results;
+      pokemonNames.value = pokemons.value.map((pokemon) => pokemon.name);
+    });
+}
+
+function addToFavorites(name) {
+  store.commit("addFavorite", name);
+}
+
+function onSearchResultsUpdate(results, search) {
+  searchResults.value = results;
+  searchPerformed.value = search.length > 0;
+}
 </script>
 
 <style scoped>
