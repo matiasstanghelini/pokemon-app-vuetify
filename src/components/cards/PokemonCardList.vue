@@ -2,7 +2,7 @@
   <v-card>
     <div class="d-flex flex-no-wrap justify-space-between">
       <div>
-        <button @click="handleButtonSelection">
+        <button @click="handleOpenSelection">
           <v-card-title class="text-h5">{{
             formatPokemonName(name)
           }}</v-card-title>
@@ -58,14 +58,12 @@ export default {
 
     handleButtonSelection(name) {
       this.$emit("add-to-favorite", name);
+      this.$store.dispatch("setSelectedPokemon", name);
     },
 
-    handleButtonSelection() {
+    handleOpenSelection() {
       this.dialog = true;
       this.$store.dispatch("updateSelectedPokemon", this.name);
-    },
-    closeDialog() {
-      this.dialog = false;
     },
   },
 };
