@@ -1,21 +1,18 @@
 <template>
-  <v-dialog v-model="openModal" persistent>
-    <v-card class="layout mx-auto">
-      <v-img height="150" :src="imageUrl" cover></v-img>
-
-      <v-card-title><strong>Name:</strong> {{ name }} </v-card-title>
+  <v-dialog v-model="openModal" width="500">
+    <v-card>
+      <v-img height="150" src="@/assets/images/background-pokemon.png" cover>
+        <v-container>
+          <v-img height="100" src="@/assets/images/logo.png" />
+        </v-container>
+      </v-img>
+      <v-card-item><strong>Name:</strong> {{ name }} </v-card-item>
       <v-divider class="mb-1"></v-divider>
-      <v-card-subtitle><strong>Weight:</strong> {{ weight }} </v-card-subtitle>
+      <v-card-item><strong>Weight:</strong> {{ weight }} </v-card-item>
       <v-divider class="mb-1"></v-divider>
-      <v-card-subtitle><strong>Height:</strong> {{ height }} </v-card-subtitle>
+      <v-card-item><strong>Height:</strong> {{ height }} </v-card-item>
       <v-divider class="mb-1"></v-divider>
-      <v-card-subtitle><strong>Type:</strong> {{ type }} </v-card-subtitle>
-      <v-divider class="mb-1"></v-divider>
-
-      <v-card-actions>
-        <v-spacer></v-spacer>
-        <v-btn color="blue darken-1" text @click="closeDialog">Close</v-btn>
-      </v-card-actions>
+      <v-card-item><strong>Type:</strong> {{ type }} </v-card-item>
     </v-card>
   </v-dialog>
 </template>
@@ -25,66 +22,24 @@ export default {
   data() {
     return {
       openModal: false,
-      pokemon: "",
     };
   },
-
-  watch: {
-    openModal(newVal) {
-      if (newVal) {
-        console.log(newVal);
-        this.fetchPokemon();
-      }
+  props: {
+    name: {
+      type: String,
+      required: false,
     },
-  },
-
-  mounted() {
-    if (this.$store.getters.getSelectedPokemon) {
-      this.fetchPokemon();
-    }
-  },
-
-  methods: {
-    fetchPokemon() {
-      const selectedPokemon = this.$store.getters.getSelectedPokemon;
-      console.log(selectedPokemon);
-      const url = `https://pokeapi.co/api/v2/pokemon/${selectedPokemon}`;
-      console.log(url);
-      fetch(url)
-        .then((response) => response.json())
-        .then((data) => {
-          this.pokemon = data;
-        })
-        .catch((error) => console.error(error));
+    weight: {
+      type: Number,
+      required: false,
     },
-
-    closeDialog() {
-      this.$emit("close-modal");
-      this.openModal = false;
+    height: {
+      type: Number,
+      required: false,
     },
-  },
-
-  computed: {
-    name() {
-      return this.pokemon?.name || "";
-    },
-
-    weight() {
-      return this.pokemon?.weight || "";
-    },
-
-    height() {
-      return this.pokemon?.height || "";
-    },
-
-    type() {
-      return (
-        this.pokemon?.types?.map((type) => type.type.name).join(", ") || ""
-      );
-    },
-
-    imageUrl() {
-      return this.pokemon?.sprites?.front_default || "";
+    type: {
+      type: String,
+      required: false,
     },
   },
 };
