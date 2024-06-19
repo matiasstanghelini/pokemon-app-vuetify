@@ -87,6 +87,7 @@ watch(selectedPokemon, async (newValue) => {
       }
     } catch (error) {
       console.error(error);
+    } finally {
     }
   }
 });
