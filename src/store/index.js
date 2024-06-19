@@ -1,9 +1,12 @@
+// store/index.js
+
 import { createStore } from "vuex";
 
 export default createStore({
   state: () => ({
     favorites: [],
     selectedPokemon: "",
+    pokemonDetails: {},
   }),
   mutations: {
     addFavorite(state, pokemonName) {
@@ -11,6 +14,9 @@ export default createStore({
     },
     setSelectedPokemon(state, name) {
       state.selectedPokemon = name;
+    },
+    setPokemonDetails(state, details) {
+      state.pokemonDetails = details;
     },
   },
   actions: {
@@ -21,5 +27,6 @@ export default createStore({
   getters: {
     favorites: (state) => state.favorites,
     getSelectedPokemon: (state) => state.selectedPokemon,
+    getPokemonDetails: (state) => state.pokemonDetails,
   },
 });
