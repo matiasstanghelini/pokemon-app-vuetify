@@ -18,7 +18,6 @@ La aplicación Pokémon permite a los usuarios explorar una lista de Pokémon, a
 ### Favorite Pokémon List View
 
 - Muestra solo los Pokémon que han sido marcados como favoritos por el usuario.
-- Permite eliminar Pokémon de la lista de favoritos.
 
 ## Estructura del Proyecto
 
