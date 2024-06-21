@@ -54,7 +54,6 @@ export default {
 
     handleButtonSelection(name) {
       this.$emit("add-to-favorite", name);
-      this.$store.dispatch("setSelectedPokemon", name);
     },
 
     handleOpenSelection() {
