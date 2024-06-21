@@ -4,11 +4,13 @@
       icon="mdi mdi-format-list-bulleted-square"
       name="All"
       @click="$router.push('/pokemons-list')"
+      :buttonColor="isActive('/pokemons-list') ? ' #ff0000' : 'grey'"
     />
     <GenericLargeButton
       icon="mdi-star"
       name="Favorites"
       @click="$router.push('/pokemons-favorites')"
+      :buttonColor="isActive('/pokemons-favorites') ? ' #ff0000' : 'grey'"
     />
   </div>
 </template>
@@ -20,6 +22,16 @@ export default {
   name: "PokemonListFooter",
   components: {
     GenericLargeButton,
+  },
+  computed: {
+    currentRoute() {
+      return this.$route.path;
+    },
+  },
+  methods: {
+    isActive(path) {
+      return this.currentRoute === path;
+    },
   },
 };
 </script>
