@@ -20,6 +20,7 @@ export default {
 button {
   border: 1px solid transparent;
   font-size: 14px;
+  font-weight: 700;
   background-color: #ff0000;
   width: Hug (131px) px;
   height: Hug (44px) px;
