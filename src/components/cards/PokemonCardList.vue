@@ -9,11 +9,7 @@
         </button>
       </div>
       <div>
-        <PokemonDetailsModal
-          :name="name"
-          v-model="dialog"
-          @close-modal="closeDialog"
-        />
+        <PokemonDetailsModal :name="name" v-model="dialog" />
         <v-card-actions>
           <v-btn
             class="ms-2"
