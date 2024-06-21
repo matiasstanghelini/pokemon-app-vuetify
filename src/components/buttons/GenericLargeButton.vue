@@ -1,6 +1,10 @@
 <template>
   <v-col cols="4" class="d-flex justify-center">
-    <button class="d-flex flex-grow-1 justify-center" @click="$emit('click')">
+    <button
+      class="d-flex flex-grow-1 justify-center"
+      :style="buttonStyle"
+      @click="$emit('click')"
+    >
       <v-icon size="24" color="white">
         {{ icon }}
       </v-icon>
@@ -21,20 +25,24 @@ export default {
       type: String,
       required: true,
     },
+    buttonColor: {
+      type: String,
+      default: " #ff0000",
+    },
+  },
+  computed: {
+    buttonStyle() {
+      return {
+        border: `1px solid transparent`,
+        fontSize: `14px`,
+        backgroundColor: this.buttonColor,
+        width: "131px",
+        height: "44px",
+        padding: "11px 20px 11px 20px",
+        borderRadius: "60px",
+        opacity: "0px",
+      };
+    },
   },
 };
 </script>
-
-<style scoped>
-button {
-  border: 1px solid transparent;
-  font-size: 14px;
-  background-color: #ff0000;
-  width: 131px;
-  height: 44px;
-  padding: 11px 20px 11px 20px;
-  gap: 10px;
-  border-radius: 60px;
-  opacity: 0px;
-}
-</style>
