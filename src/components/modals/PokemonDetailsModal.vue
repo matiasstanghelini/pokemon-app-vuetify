@@ -2,6 +2,7 @@
   <v-dialog v-model="openModal" width="500">
     <v-card>
       <PokemonAttributes
+        v-if="getPokemonDetails"
         :name="getPokemonDetails.name"
         :image="getPokemonDetails.image"
         :weight="getPokemonDetails.weight"
@@ -20,9 +21,7 @@
             <v-btn
               icon="mdi-star"
               variant="tonal"
-              :color="
-                isButtonSelected(getPokemonDetails.name) ? 'success' : '#BFBFBF'
-              "
+              :color="isNamePresent ? '#ECA539' : '#BFBFBF'"
             />
           </v-col>
         </v-row>
@@ -57,15 +56,14 @@ export default {
     favorites() {
       return this.$store.getters.favorites;
     },
+    isNamePresent() {
+      const { name } = this.getPokemonDetails || {};
+      return name ? this.favorites.has(name.toLowerCase()) : false;
+    },
   },
   methods: {
-    isButtonSelected(name) {
-      return this.favorites.some((favorite) => favorite.name === name);
-    },
-    formatPokemonName(name) {
-      return name.charAt(0).toUpperCase() + name.slice(1);
-    },
     copyPokemonDetailsToClipboard() {
+      if (!this.getPokemonDetails) return;
       const { name, weight, height, types } = this.getPokemonDetails;
       const pokemonDetails = `${name}, ${weight}, ${height}, ${types}`;
       navigator.clipboard.writeText(pokemonDetails).finally(() => {
