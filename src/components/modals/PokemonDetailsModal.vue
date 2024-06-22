@@ -21,7 +21,7 @@
             <v-btn
               icon="mdi-star"
               variant="tonal"
-              :color="isNamePresent ? '#ECA539' : '#BFBFBF'"
+              :color="isButtonSelected ? '#ECA539' : '#BFBFBF'"
             />
           </v-col>
         </v-row>
@@ -56,9 +56,11 @@ export default {
     favorites() {
       return this.$store.getters.favorites;
     },
-    isNamePresent() {
-      const { name } = this.getPokemonDetails || {};
-      return name ? this.favorites.has(name.toLowerCase()) : false;
+    isButtonSelected() {
+      const pokemonName =
+        this.getPokemonDetails?.name?.charAt(0)?.toLowerCase() +
+        this.getPokemonDetails?.name?.slice(1);
+      return this.favorites.includes(pokemonName);
     },
   },
   methods: {
